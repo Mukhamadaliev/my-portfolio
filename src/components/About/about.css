@@ -1,0 +1,365 @@
+/* About Section Background */
+.background-about {
+  background-color: #f0f7ff;
+  padding-left: 150px;
+}
+
+/* --- Base Styles (Mobile-First) --- */
+/* Bu stillar barcha ekran o'lchamlariga qo'llaniladi va kerak bo'lganda media so'rovlar bilan ustiga yoziladi. */
+.section {
+  padding: 4rem 0;
+  /* Bo'limlar uchun standart vertikal bo'shliq */
+}
+
+.max-width {
+  width: 90%;
+  /* Kontentning kengligini belgilaydi */
+  max-width: 1200px;
+  /* Maksimal kengligini cheklaydi */
+  margin: 0 auto;
+  /* Kontentni gorizontal ravishda markazlashtiradi */
+}
+
+/* --- About Section Layout --- */
+.about {
+  padding: 0 1rem;
+  /* "About" bo'limi ichidagi kontent uchun gorizontal bo'shliq */
+  display: flex;
+  flex-direction: column;
+  /* Mobil qurilmalarda rasm tepada, matn pastda */
+  align-items: center;
+  /* Elementlarni markazga tekislaydi */
+  gap: 2rem;
+  /* Rasm va matn bloklari orasidagi bo'shliq */
+  text-align: center;
+  /* Matnni markazga tekislaydi */
+}
+
+/* Chap tomon (Rasm) */
+.about-left {
+  flex: 1;
+  /* Kerak bo'lganda o'sishiga imkon beradi */
+  display: flex;
+  justify-content: center;
+  /* Rasmni o'z ichida markazlashtiradi */
+}
+
+.about-left img {
+  width: 100%;
+  /* Ota-elementning to'liq kengligini oladi */
+  max-width: 300px;
+  /* Kichik ekranlarda rasm kengligini cheklaydi */
+  height: auto;
+  /* Nisbatini saqlaydi */
+  border-radius: 10px;
+  /* Burchaklarni yumaloqlaydi */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Soya qo'shadi */
+  object-fit: cover;
+  /* Rasmni maydonini to'liq qoplashini ta'minlaydi */
+}
+
+/* O'ng tomon (Matn kontenti) */
+.about-right {
+  flex: 1;
+  /* Mavjud bo'sh joyni egallashiga imkon beradi */
+}
+
+.about-right h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #1a3e72;
+}
+
+.about-right p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+/* --- Cards Section --- */
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Kichik ekranlarda 1 ustun */
+  gap: 1rem;
+  margin: 2rem 0;
+  /* Kartalar konteyneri uchun yuqori va pastki bo'shliq */
+  width: 100%;
+  /* Ota-elementning to'liq kengligini oladi */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Hover effektlari */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3a86ff;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.card-text span {
+  font-size: 0.8rem;
+  color: #4a5568;
+}
+
+/* --- Button --- */
+/* Class nomi "About-btn" dan "about-btn" ga o'zgartirildi, standart nomlash uchun. */
+.about-btn {
+  padding: 0.8rem 1.5rem;
+  background: #3a86ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  /* Padding va margin to'g'ri ishlashi uchun */
+}
+
+.about-btn:hover {
+  background: #2667cc;
+  transform: translateY(-2px);
+}
+
+/* --- Media Queries --- */
+
+/* Kichik mobil qurilmalar uchun moslamalar (eng tor ekranlar uchun ixtiyoriy) */
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 0;
+    /* Vertikal bo'shliqni sozlaydi */
+  }
+
+  .about {
+    gap: 1.5rem;
+  }
+
+  .about-left img {
+    max-width: 250px;
+    /* Juda kichik ekranlarda rasmni biroz kichraytiradi */
+  }
+
+  .about-right h1 {
+    font-size: 2rem;
+  }
+
+  .about-right p {
+    font-size: 0.9rem;
+  }
+
+  .card-number {
+    font-size: 1.3rem;
+  }
+
+  .card-text span {
+    font-size: 0.75rem;
+  }
+}
+
+/* Kichik planshetlar va katta telefonlar (min-width: 577px) - Kartalar 2 ustunli */
+@media (min-width: 577px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    /* Kartalar uchun 2 ustun */
+  }
+
+  .about-right h1 {
+    font-size: 2.2rem;
+    /* Sarlavha shriftini biroz kattalashtiradi */
+  }
+}
+
+
+/* Planshetlar va Katta ekranlar (min-width: 768px) - Rasm va matn yonma-yon */
+@media (min-width: 768px) {
+  .section {
+    padding: 60px 0;
+    /* Ko'proq vertikal bo'shliq */
+  }
+
+  .about {
+    flex-direction: row;
+    /* Rasm va matn yonma-yon joylashadi */
+    gap: 3rem;
+    /* Yonma-yon joylashish uchun bo'shliqni sozlaydi */
+    padding: 0 2rem;
+    /* Doimiy gorizontal bo'shliq */
+    text-align: left;
+    /* Matnni chapga tekislaydi */
+    align-items: flex-start;
+    /* Elementlarni yuqoriga tekislaydi */
+  }
+
+  .about-left {
+    order: 1;
+    /* Rasmni chap tomonga joylashtiradi */
+    justify-content: flex-start;
+    /* Rasmni o'z ichida chapga tekislaydi */
+  }
+
+  .about-left img {
+    width: 350px;
+    /* Planshetlarda rasmni kattalashtiradi */
+    height: 350px;
+    object-fit: cover;
+    /* Izchil kvadrat nisbatini saqlaydi */
+  }
+
+  .about-right {
+    order: 2;
+    /* Matnni o'ng tomonga joylashtiradi */
+  }
+
+  .about-right h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+
+  .about-right p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(4, 1fr);
+    /* Planshetlar va undan kattalarda kartalar uchun 4 ustun */
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+
+  .card-number {
+    font-size: 1.8rem;
+  }
+
+  .card-text span {
+    font-size: 0.85rem;
+  }
+
+  .about-btn {
+    font-size: 1.05rem;
+  }
+}
+
+/* Desktop (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .about {
+    gap: 4rem;
+    padding-left: 150px;
+    /* Rasm va matn orasidagi ko'proq bo'shliq */
+  }
+
+  .about-left img {
+    max-width: 400px;
+    height: 400px;
+  }
+
+  .about-right h1 {
+    font-size: 3.5rem;
+  }
+
+  .about-right p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    /* Matn kengligini o'qish qulayligi uchun cheklaydi */
+  }
+
+  .cards-container {
+    gap: 2rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card-number {
+    font-size: 2rem;
+  }
+
+  .card-text span {
+    font-size: 0.9rem;
+  }
+
+  .about-btn {
+    padding: 1rem 2rem;
+  }
+}
+
+/* Katta Desktop (min-width: 1440px) */
+@media (min-width: 1440px) {
+  .max-width {
+    max-width: 1400px;
+    /* Kontent maydonini kengaytiradi */
+  }
+
+  .about {
+    gap: 40px;
+  }
+
+  .about-left img {
+    max-width: 450px;
+    /* Rasmni yanada kattalashtiradi */
+    height: 450px;
+  }
+
+  .about-right h1 {
+    font-size: 4rem;
+    /* Sarlavha shriftini kattalashtiradi */
+  }
+
+  .about-right p {
+    font-size: 1.1rem;
+    /* Matn shriftini kattalashtiradi */
+  }
+
+  .cards-container {
+    gap: 2.5rem;
+  }
+
+  .card {
+    padding: 1.8rem;
+  }
+
+  .card-number {
+    font-size: 2.2rem;
+  }
+
+  .card-text span {
+    font-size: 1rem;
+  }
+
+  .about-btn {
+    padding: 1.1rem 2.2rem;
+    font-size: 1.2rem;
+  }
+}
