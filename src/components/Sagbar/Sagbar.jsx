@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 import "./sagbar.css";
 import imgSagbar from "./assets/image.png";
 
-const Sagbar = () => {
+const Sagbar = ({ isDarkMode }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,8 +45,8 @@ const Sagbar = () => {
   return (
     <>
       <div
-        className={`sagbar-container ${isMobile ? "mobile" : "desktop"
-          } ${collapsed ? "collapsed" : ""} ${isOpen ? "open" : ""}`}
+        className={`sagbar-container ${isMobile ? "mobile" : "desktop"} ${collapsed ? "collapsed" : ""
+          } ${isOpen ? "open" : ""} ${isDarkMode ? "dark" : "light"}`}
       >
         <div className="sagbar-content">
           <div className="div" data-aos="fade-right">
@@ -61,42 +61,40 @@ const Sagbar = () => {
                   <MdHome className="icon" />
                   {!collapsed && <span>Home</span>}
                 </NavLink>
-                <hr />
               </li>
               <li>
                 <NavLink to="/about" onClick={closeSidebar}>
                   <MdPerson className="icon" />
                   {!collapsed && <span>About</span>}
                 </NavLink>
-                <hr />
               </li>
               <li>
                 <NavLink to="/skills" onClick={closeSidebar}>
                   <FaListUl className="icon" />
                   {!collapsed && <span>Skills</span>}
                 </NavLink>
-                <hr />
               </li>
               <li>
                 <NavLink to="/projects" onClick={closeSidebar}>
                   <FaBriefcase className="icon" />
                   {!collapsed && <span>Projects</span>}
                 </NavLink>
-                <hr />
               </li>
               <li>
                 <NavLink to="/contact" onClick={closeSidebar}>
                   <IoMdChatboxes className="icon" />
                   {!collapsed && <span>Contact</span>}
                 </NavLink>
-                <hr />
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-      <button className={`toggle-btn ${isOpen ? "open" : ""}`} onClick={toggleSidebar}>
+      <button
+        className={`toggle-btn ${isOpen ? "open" : ""} ${isDarkMode ? "dark" : "light"}`}
+        onClick={toggleSidebar}
+      >
         {isMobile ? (isOpen ? <MdClose /> : <MdMenu />) : <RiMenu2Fill />}
       </button>
 

@@ -3,19 +3,18 @@ import './about.css';
 import img2 from './img/image.png'
 import { MdDownload } from "react-icons/md";
 
-const About = () => {
+const About = ({ isDarkMode }) => {
   return (
-    <div className="background-about">
+    <div className={`background-about ${isDarkMode ? 'dark' : ''}`}>
       <div className="max-width">
-
         <section id="about" className="section" data-aos="fade-up-left">
           <div className="about">
             <div className="about-left">
-              <img src={img2} alt="" />
+              <img src={img2} alt="Ibrohim" />
             </div>
             <div className="about-right">
               <h1>About Me</h1>
-              <p>I’m Ibrohim, a passionate Frontend Developer with over 1 years of professional experience. I specialize in building modern, responsive, and user-friendly web applications using React, Tailwind CSS, and other cutting-edge technologies.</p>
+              <p>I'm Ibrohim, a passionate Frontend Developer with over 1 years of professional experience. I specialize in building modern, responsive, and user-friendly web applications using React, Tailwind CSS, and other cutting-edge technologies.</p>
               <br />
               <p>Throughout my career, I have successfully delivered multiple projects, ensuring clean code, performance optimization, and seamless user experience.</p>
               <div className="cards-container">

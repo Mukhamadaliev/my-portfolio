@@ -5,26 +5,26 @@ import { MdDownload } from "react-icons/md";
 import { FaTelegramPlane, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 
-const Home = () => {
+const Home = ({ isDarkMode }) => {
     return (
-        <div className="background-home" data-aos="fade-up-left">
+        <div className={`background-home ${isDarkMode ? 'dark' : ''}`}>
             <div className="max-width">
                 <section id="home" className="section">
-                    <div className="home-container">
+                    <div className="home-container" data-aos="fade-up">
                         {/* Left Side */}
                         <div className="home-left">
                             <h1>Hello, I am <b>Ibrohim</b></h1>
                             <h3>Frontend Developer & UI Designer</h3>
                             <p>
-                                I create modern, responsive and beautiful web experiences. 
-                                With 1+ years of experience building interfaces with React, 
+                                I create modern, responsive and beautiful web experiences.
+                                With 1+ years of experience building interfaces with React,
                                 Tailwind and other modern tools.
                             </p>
 
                             <div className="home-buttons">
-                                <a 
-                                    href="/CV.docx" 
-                                    download="CV.docx" 
+                                <a
+                                    href="/CV.docx"
+                                    download="CV.docx"
                                     className="btn-download"
                                 >
                                     Download CV <MdDownload />
