@@ -87,6 +87,7 @@ ${message}
           <p>{t("contactText1")}</p>
           <p>{t("contactText2")}</p>
         </div>
+        
 
         <div className="contact-grid">
           {/* Contact Information */}
