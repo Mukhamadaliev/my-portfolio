@@ -9,22 +9,6 @@ import { PiFigmaLogoDuotone } from "react-icons/pi";
 import { FaComments, FaUsers, FaLightbulb, FaClock, FaBrain, FaPuzzlePiece } from "react-icons/fa";
 
 const Skills = ({ isDarkMode = false, t }) => {
-  const translate = (key) => {
-    if (typeof t === "function") return t(key);
-    const translations = {
-      "Communication": "Communication",
-      "Teamwork": "Teamwork",
-      "Creativity": "Creativity",
-      "Time Management": "Time Management",
-      "Problem Solving": "Problem Solving",
-      "Critical Thinking": "Critical Thinking",
-      "My Skills": "My Skills",
-      "Hard Skills": "Hard Skills",
-      "Soft Skills": "Soft Skills"
-    };
-    return translations[key] || key;
-  };
-
   const hardSkills = [
     { name: "HTML5", icon: <FaHtml5 />, level: 95, color: "#e44d26" },
     { name: "CSS", icon: <FaCss3Alt />, level: 90, color: "#264de4" },
@@ -36,12 +20,12 @@ const Skills = ({ isDarkMode = false, t }) => {
   ];
 
   const softSkills = [
-    { name: translate("Communication"), icon: <FaComments />, level: 90 },
-    { name: translate("Teamwork"), icon: <FaUsers />, level: 85 },
-    { name: translate("Creativity"), icon: <FaLightbulb />, level: 80 },
-    { name: translate("Time Management"), icon: <FaClock />, level: 85 },
-    { name: translate("Problem Solving"), icon: <FaPuzzlePiece />, level: 80 },
-    { name: translate("Critical Thinking"), icon: <FaBrain />, level: 75 }
+    { name: t("Communication"), icon: <FaComments />, level: 90 },
+    { name: t("Teamwork"), icon: <FaUsers />, level: 85 },
+    { name: t("Creativity"), icon: <FaLightbulb />, level: 80 },
+    { name: t("Time Management"), icon: <FaClock />, level: 85 },
+    { name: t("Problem Solving"), icon: <FaPuzzlePiece />, level: 80 },
+    { name: t("Critical Thinking"), icon: <FaBrain />, level: 75 }
   ];
 
   const [activeTab, setActiveTab] = useState("hard");
@@ -52,20 +36,20 @@ const Skills = ({ isDarkMode = false, t }) => {
   return (
     <section id="skills" className={`skills-section ${isDarkMode ? "dark" : ""}`}>
       <div className="container">
-        <h2 className="section-title">{translate("My Skills")}</h2>
+        <h2 className="section-title">{t("My Skills")}</h2>
 
         <div className="types-of-skills">
           <h3
             className={activeTab === "hard" ? "tab active-tab" : "tab"}
             onClick={() => { setActiveTab("hard"); setActiveIndex(null); }}
           >
-            {translate("Hard Skills")}
+            {t("Hard Skills")}
           </h3>
           <h3
             className={activeTab === "soft" ? "tab active-tab" : "tab"}
             onClick={() => { setActiveTab("soft"); setActiveIndex(null); }}
           >
-            {translate("Soft Skills")}
+            {t("Soft Skills")}
           </h3>
         </div>
 

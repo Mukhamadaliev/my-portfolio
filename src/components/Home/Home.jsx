@@ -5,7 +5,7 @@ import { MdDownload } from "react-icons/md";
 import { FaTelegramPlane, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 
-const Home = ({ isDarkMode }) => {
+const Home = ({ isDarkMode, t }) => {
     return (
         <div className={`background-home ${isDarkMode ? 'dark' : ''}`}>
             <div className="max-width">
@@ -13,12 +13,10 @@ const Home = ({ isDarkMode }) => {
                     <div className="home-container" data-aos="fade-up">
                         {/* Left Side */}
                         <div className="home-left">
-                            <h1>Hello, I am <b>Ibrohim</b></h1>
-                            <h3>Frontend Developer & UI Designer</h3>
+                            <h1>{t('Hello, I am')} <b>Ibrohim</b></h1>
+                            <h3>{t('Frontend Developer & UI Designer')}</h3>
                             <p>
-                                I create modern, responsive and beautiful web experiences.
-                                With 1+ years of experience building interfaces with React,
-                                Tailwind and other modern tools.
+                                {t('homeDescription')}
                             </p>
 
                             <div className="home-buttons">
@@ -27,7 +25,7 @@ const Home = ({ isDarkMode }) => {
                                     download="CV.docx"
                                     className="btn-download"
                                 >
-                                    Download CV <MdDownload />
+                                    {t('Download CV')} <MdDownload />
                                 </a>
                                 <div className="social-links">
                                     <a href="https://t.me/Mukhamadaliyev20" className="telegram"><FaTelegramPlane /></a>

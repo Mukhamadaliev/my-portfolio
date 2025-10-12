@@ -1,3 +1,4 @@
+import React from 'react';
 import './Projects.css'
 import rasm1 from './assets/sayt web .png'
 import rasm2 from './assets/belissimo.png'
@@ -5,7 +6,7 @@ import rasm3 from './assets/mini sayt.png'
 import rasm4 from './assets/2025-06-10_21-22-12.png'
 import rasm5 from './assets/2025-06-10_22-38-38.png'
 
-const Projects = ({ isDarkMode }) => {
+const Projects = ({ isDarkMode, t }) => {
     return (
         <div className={`background-projects ${isDarkMode ? 'dark' : ''}`}>
             <section id="Portfolio" className="section">
@@ -13,7 +14,7 @@ const Projects = ({ isDarkMode }) => {
                     <div className="max-width">
                         <div className='project' id='Projects'>
                             <br />
-                            <h1 className='h1-Projects'>My Projects</h1>
+                            <h1 className='h1-Projects'>{t('My Projects')}</h1>
                             <br />
                             <br />
                             <div className="div-project-max-1">
@@ -97,4 +98,4 @@ const Projects = ({ isDarkMode }) => {
     )
 }
 
-export default Projects
+export default Projects;

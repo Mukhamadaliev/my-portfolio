@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './noteFound.css'; // Styling alohida bo'ladi
+import './noteFound.css';
 
-const NoteFound = () => {
+const NoteFound = ({ t }) => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -12,12 +12,12 @@ const NoteFound = () => {
   return (
     <div className="notfound-container">
       <h1 className="notfound-title">404</h1>
-      <h2 className="notfound-subtitle">Oops! Page Not Found</h2>
+      <h2 className="notfound-subtitle">{t("Oops! Page Not Found")}</h2>
       <p className="notfound-text">
-        The page you are looking for doesn’t exist or has been moved.
+        {t("404message")}
       </p>
       <button className="notfound-btn" onClick={goBack}>
-        ⬅ Go Back Home
+        ⬅ {t("Go Back Home")}
       </button>
     </div>
   );

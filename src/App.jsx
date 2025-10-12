@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './App.css';
+import './i18n';
 import Sagbar from './components/Sagbar/Sagbar';
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -9,6 +11,7 @@ import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
 import NoteFound from './components/notefound/NoteFound';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 
 const Layout = ({ children, isDarkMode }) => {
   return (
@@ -23,6 +26,7 @@ const Layout = ({ children, isDarkMode }) => {
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { t } = useTranslation();
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -31,12 +35,13 @@ const App = () => {
   return (
     <div className={`app ${isDarkMode ? 'dark' : 'light'}`}>
       <ThemeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+      <LanguageSwitcher />
       <Routes>
         <Route
           path="/"
           element={
             <Layout isDarkMode={isDarkMode}>
-              <Home isDarkMode={isDarkMode} />
+              <Home isDarkMode={isDarkMode} t={t} />
             </Layout>
           }
         />
@@ -44,7 +49,7 @@ const App = () => {
           path="/about"
           element={
             <Layout isDarkMode={isDarkMode}>
-              <About isDarkMode={isDarkMode} />
+              <About isDarkMode={isDarkMode} t={t} />
             </Layout>
           }
         />
@@ -52,7 +57,7 @@ const App = () => {
           path="/skills"
           element={
             <Layout isDarkMode={isDarkMode}>
-              <Skills isDarkMode={isDarkMode} />
+              <Skills isDarkMode={isDarkMode} t={t} />
             </Layout>
           }
         />
@@ -60,7 +65,7 @@ const App = () => {
           path="/projects"
           element={
             <Layout isDarkMode={isDarkMode}>
-              <Projects isDarkMode={isDarkMode} />
+              <Projects isDarkMode={isDarkMode} t={t} />
             </Layout>
           }
         />
@@ -68,13 +73,13 @@ const App = () => {
           path="/contact"
           element={
             <Layout isDarkMode={isDarkMode}>
-              <Contact isDarkMode={isDarkMode} />
+              <Contact isDarkMode={isDarkMode} t={t} />
             </Layout>
           }
         />
 
         {/*  404 page -> No Sagbar */}
-        <Route path="*" element={<NoteFound />} />
+        <Route path="*" element={<NoteFound t={t} />} />
       </Routes>
     </div>
   );

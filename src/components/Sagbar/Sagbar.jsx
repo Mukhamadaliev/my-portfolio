@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { MdHome, MdPerson, MdClose, MdMenu } from "react-icons/md";
-import { FaListUl, FaBriefcase } from "react-icons/fa";
-import { IoMdChatboxes } from "react-icons/io";
+import { MdHome, MdPerson, MdClose, MdMenu, MdWork, MdEmail } from "react-icons/md";
+import { FaListUl, FaCode } from "react-icons/fa";
 import { RiMenu2Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./sagbar.css";
@@ -12,21 +12,24 @@ import imgSagbar from "./assets/image.png";
 const Sagbar = ({ isDarkMode }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
 
     const handleResize = () => {
-      if (window.innerWidth > 768) {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
         setIsOpen(false);
       }
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const isMobile = window.innerWidth <= 768;
 
   const toggleSidebar = () => {
     if (isMobile) {
@@ -42,64 +45,75 @@ const Sagbar = ({ isDarkMode }) => {
     }
   };
 
+  const navItems = [
+    { to: "/", icon: MdHome, label: t("Home") },
+    { to: "/about", icon: MdPerson, label: t("About") },
+    { to: "/skills", icon: FaListUl, label: t("Skills") },
+    { to: "/projects", icon: FaCode, label: t("Projects") },
+    { to: "/contact", icon: MdEmail, label: t("Contact") }
+  ];
+
   return (
     <>
       <div
-        className={`sagbar-container ${isMobile ? "mobile" : "desktop"} ${collapsed ? "collapsed" : ""
-          } ${isOpen ? "open" : ""} ${isDarkMode ? "dark" : "light"}`}
+        className={`sagbar-container ${isMobile ? "mobile" : "desktop"} ${
+          collapsed ? "collapsed" : ""
+        } ${isOpen ? "open" : ""} ${isDarkMode ? "dark" : "light"}`}
       >
         <div className="sagbar-content">
-          <div className="div" data-aos="fade-right">
+          <div data-aos="fade-right">
+            {/* Profile Section */}
             <div className="profile-section">
-              <img src={imgSagbar} alt="Profile" className="profile-img" />
-              {!collapsed && <h4 className="profile-name">Ibrohim</h4>}
+              <img 
+                src={imgSagbar} 
+                alt="Profile" 
+                className="profile-img" 
+              />
+              {!collapsed && (
+                <h4 className="profile-name">Ibrohim</h4>
+              )}
             </div>
 
+            {/* Navigation Menu */}
             <ul className="nav-list">
-              <li>
-                <NavLink to="/" onClick={closeSidebar}>
-                  <MdHome className="icon" />
-                  {!collapsed && <span>Home</span>}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/about" onClick={closeSidebar}>
-                  <MdPerson className="icon" />
-                  {!collapsed && <span>About</span>}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/skills" onClick={closeSidebar}>
-                  <FaListUl className="icon" />
-                  {!collapsed && <span>Skills</span>}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/projects" onClick={closeSidebar}>
-                  <FaBriefcase className="icon" />
-                  {!collapsed && <span>Projects</span>}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/contact" onClick={closeSidebar}>
-                  <IoMdChatboxes className="icon" />
-                  {!collapsed && <span>Contact</span>}
-                </NavLink>
-              </li>
+              {navItems.map((item, index) => (
+                <li key={item.to}>
+                  <NavLink 
+                    to={item.to} 
+                    onClick={closeSidebar}
+                    className={({ isActive }) => isActive ? "active" : ""}
+                  >
+                    <item.icon className="icon" />
+                    {!collapsed && <span>{item.label}</span>}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
 
+      {/* Toggle Button */}
       <button
-        className={`toggle-btn ${isOpen ? "open" : ""} ${isDarkMode ? "dark" : "light"}`}
+        className={`toggle-btn ${isOpen ? "open" : ""} ${
+          isDarkMode ? "dark" : "light"
+        }`}
         onClick={toggleSidebar}
+        aria-label="Toggle sidebar"
       >
-        {isMobile ? (isOpen ? <MdClose /> : <MdMenu />) : <RiMenu2Fill />}
+        {isMobile ? (
+          isOpen ? <MdClose /> : <MdMenu />
+        ) : (
+          <RiMenu2Fill />
+        )}
       </button>
 
+      {/* Mobile Overlay */}
       {isMobile && isOpen && (
-        <div className="sagbar-overlay" onClick={closeSidebar}></div>
+        <div 
+          className="sagbar-overlay" 
+          onClick={closeSidebar}
+        ></div>
       )}
     </>
   );
